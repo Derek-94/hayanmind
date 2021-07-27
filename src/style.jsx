@@ -1,31 +1,36 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled('section')`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Article = styled('article')`
-    width: 500px;
-    background: #f8f9fa;
-    border: 0.5px solid #ced4da;
-    box-sizing: border-box;
-    border-radius: 20px;
-    margin-bottom: 14px;
-    padding: 20px;
+  width: 500px;
+  background: #f8f9fa;
+  border: 0.5px solid #ced4da;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  padding: 20px;
 `;
 
 export const Title = styled('span')`
-    font-family: SFProDisplay;
-    font-size: 18px;
-    line-height: 21px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    display: inline-block;
-    margin-right: 12px;
-`; 
+  font-family: SFProDisplay;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: inline-block;
+  margin-right: 12px;
+`;
 
-export const ConTent = styled('div')`
-    margin-top: -10px;
+export const Content = styled('div')`
+  margin-top: -10px;
+`;
+
+export const Load = styled('h1')`
+  text-align: center;
+  color: crimson;
 `;

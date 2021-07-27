@@ -2,9 +2,9 @@
 
 ### 결과물 영상 및 배포 주소
 
-![wanted01_1](https://user-images.githubusercontent.com/52649378/127127626-eb258e2d-9c53-4c47-b3b2-67b62d74b9c5.gif)
+배포주소 : https://derek-94.github.io/hayanmind/
 
-| 배포주소: 
+![wanted01_1](https://user-images.githubusercontent.com/52649378/127127626-eb258e2d-9c53-4c47-b3b2-67b62d74b9c5.gif)
 
 ---
 

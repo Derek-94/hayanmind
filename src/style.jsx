@@ -23,4 +23,9 @@ export const Title = styled('span')`
     font-weight: 600;
     margin-bottom: 12px;
     display: inline-block;
+    margin-right: 12px;
 `; 
+
+export const ConTent = styled('div')`
+    margin-top: -10px;
+`;

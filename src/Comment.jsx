@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Article, Title } from './style'
+import { Container, Article, Title, ConTent } from './style'
 
 const Comment = ({data}) => {
 
@@ -17,7 +17,7 @@ const Comment = ({data}) => {
                 </section>
                 <main className = 'content-section'>
                     <Title className = 'title'>Comment</Title>
-                    <div>{data.body}</div>
+                    <ConTent>{data.body}</ConTent>
                 </main>
             </Article>
         </Container>

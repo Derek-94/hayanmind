@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-// import { Loader } from 'semantic-ui-react'
 import Comment from './Comment'
 
 const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
 
 const ArticleList = () => {
-
     const [commentData, setCommentData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const endofHTML = useRef();
@@ -17,13 +15,10 @@ const ArticleList = () => {
             const response = await fetch(`${END_POINT}?_page=${page.current}&_limit=10`);
             const comments = await response.json();
             page.current += 1;
-            setCommentData((commentData) => [...commentData, ...comments]);
-            console.log(page)
-            console.log(comments)
             setIsLoading(false)
             return comments;
         } catch(e) {
-            console.log(e, "Error Found");
+            console.log("Error found: ", e);
         }
     }
 
@@ -33,9 +28,10 @@ const ArticleList = () => {
         }
     }
 
-    const endofScroll = ([entry]) => {
+    const endofScroll = async([entry]) => {
         if (entry.isIntersecting) {
-            commentAPI.get();
+            const getComments = await commentAPI.get();
+            setCommentData((commentData) => [...commentData, ...getComments])
         }
     }
 
@@ -57,7 +53,7 @@ const ArticleList = () => {
                 <Comment key = {comment.id} data = {comment}/>
             ))}
             {isLoading && (
-                <h1>loading</h1>
+                <h1 style = {{ textAlign: 'center' }}>Loading...</h1>
             )}
             <div ref={endofHTML} />
         </>

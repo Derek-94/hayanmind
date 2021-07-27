@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+// import { Loader } from 'semantic-ui-react'
 import Comment from './Comment'
 
 const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
@@ -6,12 +7,20 @@ const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
 const ArticleList = () => {
 
     const [commentData, setCommentData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const endofHTML = useRef();
+    const page = useRef(1);
     
-    const request = async(page) => {
+    const request = async() => {
         try {
-            const response = await fetch(`${END_POINT}?_page=${page}&_limit=10`);
+            setIsLoading(true);
+            const response = await fetch(`${END_POINT}?_page=${page.current}&_limit=10`);
             const comments = await response.json();
-            setCommentData(comments);
+            page.current += 1;
+            setCommentData((commentData) => [...commentData, ...comments]);
+            console.log(page)
+            console.log(comments)
+            setIsLoading(false)
             return comments;
         } catch(e) {
             console.log(e, "Error Found");
@@ -20,19 +29,37 @@ const ArticleList = () => {
 
     const commentAPI = {
         get: async() => {
-            return await request(1);
+            return await request();
+        }
+    }
+
+    const endofScroll = ([entry]) => {
+        if (entry.isIntersecting) {
+            commentAPI.get();
         }
     }
 
     useEffect(() => {
-        commentAPI.get();
-    }, [])
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 1.0,
+        };
+
+        const observer = new IntersectionObserver(endofScroll, options);
+        observer.observe(endofHTML.current);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <>
             {commentData.map(comment => (
                 <Comment key = {comment.id} data = {comment}/>
             ))}
+            {isLoading && (
+                <h1>loading</h1>
+            )}
+            <div ref={endofHTML} />
         </>
     )
 }

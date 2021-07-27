@@ -3,7 +3,7 @@ import Comment from './Comment'
 
 const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
 
-const ArticleList = () => {
+const CommentContainer = () => {
     const [commentData, setCommentData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const endofHTML = useRef();
@@ -60,4 +60,4 @@ const ArticleList = () => {
     )
 }
 
-export default ArticleList;
+export default CommentContainer;
